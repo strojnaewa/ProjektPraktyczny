@@ -37,6 +37,7 @@ public class Menu {
                     SlipDto randomAdvice = adviceService.getRandomAdvice();
                     String advice = randomAdvice.getAdvice();
                     adviceService.saveAdvice(randomAdvice);
+
                     System.out.println("");
                     System.out.println("*** ADVICE FOR YOU***");
                     System.out.println(advice);

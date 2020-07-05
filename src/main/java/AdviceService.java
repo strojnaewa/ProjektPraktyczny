@@ -1,4 +1,5 @@
 import database.Slip;
+import database.SlipDao;
 import http.HttpClient;
 import http.SlipDto;
 import http.SlipResponse;
@@ -17,8 +18,9 @@ public class AdviceService {
 
     public void saveAdvice(SlipDto slip){
         Slip slipToSave = new Slip(slip);
-        
 
+        SlipDao slipdao = new SlipDao();
+        slipdao.insertOrUpdate(slipToSave);
 
     }
 }
