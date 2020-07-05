@@ -48,10 +48,8 @@ public class Slip {
 
     @Override
     public String toString() {
-        return "Slip{" +
-                "slipId=" + slipId +
+        return "slipId=" + slipId +
                 ", id=" + id +
-                ", advice='" + advice + '\'' +
-                '}';
+                ", advice='" + advice +"\n";
     }
 }

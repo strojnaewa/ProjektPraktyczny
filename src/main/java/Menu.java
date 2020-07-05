@@ -28,10 +28,9 @@ public class Menu {
             System.out.println("0. Exit");
             int nextInt = -1;
             Scanner scanner = new Scanner(System.in);
-            if (scanner.hasNextInt()){
-                nextInt=scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                nextInt = scanner.nextInt();
             }
-
 
 
             //what to do after user choice
@@ -55,8 +54,8 @@ public class Menu {
                     break;
                 }
                 case 3: {
-                   // List<Slip> allAdvices = adviceService.getAllAdvices();
-                   // System.out.println(Arrays.toString(allAdvices.toArray()));
+                    // List<Slip> allAdvices = adviceService.getAllAdvices();
+                    // System.out.println(Arrays.toString(allAdvices.toArray()));
                     menuCase3();
                     break;
                     //do dodania: wyświetl, usuń i powrót
@@ -77,9 +76,9 @@ public class Menu {
 
     public void menuCase1() {
         boolean doContinue = true;
-        Menu menu = new Menu(new AdviceService());
-        SlipDto randomAdvice = menu.adviceService.getRandomAdvice();
+        SlipDto randomAdvice = adviceService.getRandomAdvice();
         while (doContinue) {
+
             System.out.println("");
             System.out.println("What would you like to do next?");
             System.out.println("Choose one of the options:");
@@ -94,9 +93,8 @@ public class Menu {
 
             switch (nextInt) {
                 case 1: {
-
+                    randomAdvice = adviceService.getRandomAdvice();
                     String advice = randomAdvice.getAdvice();
-//                    adviceService.saveAdvice(randomAdvice);
 
                     System.out.println("");
                     System.out.println("*** ADVICE FOR YOU***");
@@ -105,7 +103,7 @@ public class Menu {
                     break;
                 }
                 case 2: {
-                    menu.adviceService.saveAdvice(randomAdvice);
+                    adviceService.saveAdvice(randomAdvice);
                     System.out.println("Record added to favourites ");
                     break;
                 }
