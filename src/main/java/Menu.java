@@ -1,6 +1,8 @@
 import database.Slip;
 import http.SlipDto;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -43,14 +45,19 @@ public class Menu {
                     System.out.println(advice);
                     System.out.println("****");
                     break;
+
+                    //dodajemy zapisz albo powrót
                 }
                 case 2: {
                     System.out.println("Not implemented yet, ssorry :( ");
                     break;
                 }
                 case 3: {
-                    System.out.println("Not implemented yet, ssorry :( ");
+                    List<Slip> allAdvices = adviceService.getAllAdvices();
+                    System.out.println(Arrays.toString(allAdvices.toArray()));
+
                     break;
+                    //do dodania: wyświetl, usuń i powrót
                 }
                 case 0: {
                     doContinue = false;
