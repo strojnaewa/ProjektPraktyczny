@@ -1,9 +1,12 @@
+package http;
 
-public class Slip {
+public class SlipDto {
+
     private long id;
     private String advice;
 
-    public Slip(long id, String advice) {
+
+    public SlipDto(long id, String advice) {
         this.id = id;
         this.advice = advice;
     }

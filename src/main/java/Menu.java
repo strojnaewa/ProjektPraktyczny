@@ -1,3 +1,6 @@
+import database.Slip;
+import http.SlipDto;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -31,9 +34,12 @@ public class Menu {
             //what to do after user choice
             switch (nextInt) {
                 case 1: {
+                    SlipDto randomAdvice = adviceService.getRandomAdvice();
+                    String advice = randomAdvice.getAdvice();
+                    adviceService.saveAdvice(randomAdvice);
                     System.out.println("");
                     System.out.println("*** ADVICE FOR YOU***");
-                    System.out.println(AdviceService.getRandomAdvice().getAdvice());
+                    System.out.println(advice);
                     System.out.println("****");
                     break;
                 }
