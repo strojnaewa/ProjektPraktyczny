@@ -38,12 +38,13 @@ public class Menu {
                 case 1: {
                     SlipDto randomAdvice = adviceService.getRandomAdvice();
                     String advice = randomAdvice.getAdvice();
-                    adviceService.saveAdvice(randomAdvice);
+//                    adviceService.saveAdvice(randomAdvice);
 
                     System.out.println("");
                     System.out.println("*** ADVICE FOR YOU***");
                     System.out.println(advice);
                     System.out.println("****");
+                    adviceService.menuCase1();
                     break;
 
                     //dodajemy zapisz albo powrót
