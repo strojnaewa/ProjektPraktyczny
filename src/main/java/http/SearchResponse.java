@@ -38,12 +38,21 @@ public class SearchResponse {
         this.slips = slips;
     }
 
+
     @Override
     public String toString() {
-        return "SearchResponse{" +
+
+        StringBuilder result = new StringBuilder("SearchResponse{" +
                 "totalResults=" + totalResults +
-                ", query='" + query + '\'' +
-                ", slips=" + slips +
-                '}';
+                ", query='" + query+"\n");
+
+        for (SlipDto slip : slips) {
+            result.append(slip.toString());
+            result.append("\n");
+
+        }
+
+        return result.toString();
+
     }
 }
