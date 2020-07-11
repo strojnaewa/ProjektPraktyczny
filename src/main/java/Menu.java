@@ -1,6 +1,8 @@
 import database.Slip;
 import database.SlipDao;
+import http.SearchResponse;
 import http.SlipDto;
+import http.SlipNotFoundException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Menu {
     }
 
     //user menu
-    public void displayMenu() {
+    public void displayMenu(){
         boolean doContinue = true;
 
         while (doContinue) {
@@ -53,17 +55,7 @@ public class Menu {
                     //dodajemy zapisz albo powrót
                 }
                 case 2: {
-                    System.out.println("What are you looking for?");
-                    String search = scanner.next();
-
-                    try {
-                        int searchInt = Integer.parseInt(search);
-                        //System.out.println(adviceClient.searchById(nextInt));
-                    } catch (NumberFormatException e) {
-                        System.out.println(adviceClient.searchByString(search));
-                    }
-
-
+                    menuCase2();
                     break;
                 }
                 case 3: {
@@ -132,6 +124,58 @@ public class Menu {
         }
     }
 
+    private void menuCase2() {
+        boolean continuing = true;
+        //SlipDto fetchedSlip = null;
+
+        while (continuing) {
+            System.out.println();
+            System.out.println("Podmenu wyszukiwania");
+            System.out.println("Wybierz opcję:");
+            System.out.println("1 - wyszukaj cytat po słowie kluczowym");
+            System.out.println("2 - wyszukaj po Id");
+            System.out.println("0 - wyjście do głównego Menu");
+
+            int option = -1;
+            Scanner scanner = new Scanner(System.in);
+            if (scanner.hasNextInt()) {
+                option = Integer.parseInt((scanner.nextLine()));
+            }
+
+            switch (option) {
+                case 0: {
+                    continuing = false;
+                    break;
+                }
+                case 1: {
+                    System.out.println("Podaj szukane słowo kluczowe:");
+                    String keyword = scanner.nextLine();
+                    try {
+                        SearchResponse sr = adviceClient.searchByString(keyword);
+                        System.out.println(sr) ;
+                    } catch (SlipNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                }
+                case 2: {
+                    System.out.println("Podaj szukane Id:");
+                    int id = scanner.nextInt();
+                    SlipDto slipDto = adviceClient.searchById(id);
+                    System.out.println(slipDto);
+                    break;
+                }
+                case -1: {
+                    System.out.println("Wpisz liczbę!");
+                    break;
+                }
+                default: {
+                    System.out.println("Funkcja nieobsługiwana.");
+                    break;
+                }
+            }
+        }
+    }
 
     public void menuCase3() {
         boolean doContinue = true;

@@ -1,6 +1,7 @@
 package http;
 
-public class SlipNotFoundException extends Throwable {
-    public SlipNotFoundException(Object p0) {
+public class SlipNotFoundException extends Exception {
+    public SlipNotFoundException(String msg) {
+        super(msg);
     }
 }

@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class HttpClient {
 
-    public <T> T fetch(String uri, Class<T> clazz) {
+    public String fetch(String uri) {
         try {
             URL url = new URL(uri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -25,9 +25,7 @@ public class HttpClient {
             }
             in.close();
 
-            Gson gson = new Gson();
-            T object = gson.fromJson(content.toString(), clazz);
-            return object;
+            return content.toString();
 
 
         } catch (IOException e) {

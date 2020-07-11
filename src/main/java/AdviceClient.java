@@ -1,7 +1,6 @@
-import http.HttpClient;
-import http.SearchResponse;
-import http.SlipDto;
-import http.SlipResponse;
+import com.google.gson.Gson;
+import database.Slip;
+import http.*;
 
 public class AdviceClient {
 
@@ -11,19 +10,29 @@ public class AdviceClient {
     private final HttpClient httpClient = new HttpClient();
 
 
-
     public SlipDto getRandomAdvice() {
-        return httpClient.fetch(URL + "advice", SlipResponse.class).getSlip();
+        String response = httpClient.fetch(URL + "advice");
+        SlipResponse slipResponse = ResponseParser.parseFromString(response, SlipResponse.class);
+        return slipResponse.getSlip();
     }
 
-    public void searchById(int id){
+    public SearchResponse searchByString(String query) throws SlipNotFoundException {
+        String response = httpClient.fetch(URL + "advice/search/" + query);
+        SearchResponse searchResponse = ResponseParser.parseFromString(response, SearchResponse.class);
+        if (searchResponse.getQuery() == null) {
+            throw new SlipNotFoundException("Slip not found for keyword: " + query);
+        }
+        return searchResponse;
 
+    }
+
+    public SlipDto searchById(int id) {
+        String s = httpClient.fetch(URL + "advice/" + id);
+        s+='}';
+        SlipResponse slipResponse = ResponseParser.parseFromString(s, SlipResponse.class);
+        return slipResponse.getSlip();
 
     }
 
 
-    public SearchResponse searchByString(String query){
-        return httpClient.fetch(URL+"advice/search/"+query, SearchResponse.class);
-
-    }
 }
