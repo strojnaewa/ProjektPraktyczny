@@ -6,8 +6,9 @@ public class AdviceClient {
 
     //metody związane z obsługą API
 
-    private static final String URL = "https://api.adviceslip.com/";
+
     private final HttpClient httpClient = new HttpClient();
+    private final String URL = PropertiesManager.getProperty("URL");
 
 
     public SlipDto getRandomAdvice() {

@@ -1,3 +1,6 @@
-|slipID = 2 | ID= 31 | advice = Never let your Mother cut your hair. |
-|slipID = 3 | ID= 103 | advice = Respect your elders. |
-|slipID = 4 | ID= 13 | advice = If you're feeling tired or anxious, a pint of water will almost always make you feel better. |
+|slipID = 1 | ID= 56 | advice = Try to do the things that you're incapable of. |
+|slipID = 3 | ID= 119 | advice = Don't assume anything is possible or impossible until you've asked the people who will be doing the work. |
+|slipID = 4 | ID= 119 | advice = Don't assume anything is possible or impossible until you've asked the people who will be doing the work. |
+|slipID = 5 | ID= 117 | advice = A common regret in life is wishing one hadn't worked so hard. |
+|slipID = 6 | ID= 129 | advice = Stop procrastinating. |
+|slipID = 7 | ID= 216 | advice = Try making a list. |

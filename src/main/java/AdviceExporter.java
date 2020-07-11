@@ -1,31 +1,26 @@
+
 import database.Slip;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
+
+//| slipId = 5 | id = 10 | advice = advice |
 public class AdviceExporter {
 
-              //w tym miejscu zmień ścieżkę do pliku
-       private final String dirPath= "C:\\Users\\Xander Realiity\\IdeaProjects\\ProjektPraktyczny\\";
-
-    public void exportToFile(List<Slip> allAdvice){
-        PrintWriter save = null;
+    public void exportToFile(List<Slip> allAdvice) {
         try {
-            save = new PrintWriter(dirPath+"favourite.txt");
+            String dirPath = PropertiesManager.getProperty("dirPath");
 
-            for (Slip advice:allAdvice
-                 ) {
-
-
-                save.println("|slipID = "+advice.getSlipId()+" | ID= "+advice.getId()+" | advice = "+advice.getAdvice()+" |");
-                            }
-
-            save.close();
+            PrintWriter zapis = new PrintWriter(dirPath + "cytaty.txt");
+            for (Slip slips : allAdvice) {
+                zapis.println("| slipId = " + slips.getSlipId() + " | id = " + slips.getId() + " | advice = " + slips.getAdvice());
+            }
+            zapis.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("Nie znaleziono pliku!");
         }
-
-
     }
 }
