@@ -12,11 +12,13 @@ public class Menu {
 
     public final AdviceService adviceService;
     public final AdviceClient adviceClient;
+    public final AdviceExporter adviceExporter;
 
 
-    public Menu(AdviceService adviceService, AdviceClient adviceClient) {
+    public Menu(AdviceService adviceService, AdviceClient adviceClient, AdviceExporter adviceExporter) {
         this.adviceService = adviceService;
         this.adviceClient = adviceClient;
+        this.adviceExporter=adviceExporter;
     }
 
     //user menu
@@ -185,6 +187,7 @@ public class Menu {
             System.out.println("Choose option");
             System.out.println("1. Show my favourites");
             System.out.println("2. Delete quote (slipID)");
+            System.out.println("3. Export to txt file");
             System.out.println("0. Exit");
             int nextInt = -1;
             Scanner scanner = new Scanner(System.in);
@@ -206,8 +209,10 @@ public class Menu {
                     SlipDao slipdao = new SlipDao();
                     slipdao.deleteID(deleteID);
 
-
-                    //do dodania: wyświetl, usuń i powrót
+                }
+                case 3:{
+                   adviceExporter.exportToFile(adviceService.getAllAdvices());
+                    break;
                 }
                 case 0: {
                     doContinue = false;

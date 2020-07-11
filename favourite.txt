@@ -1,0 +1,3 @@
+|slipID = 2 | ID= 31 | advice = Never let your Mother cut your hair. |
+|slipID = 3 | ID= 103 | advice = Respect your elders. |
+|slipID = 4 | ID= 13 | advice = If you're feeling tired or anxious, a pint of water will almost always make you feel better. |

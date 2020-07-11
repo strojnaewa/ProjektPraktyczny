@@ -46,6 +46,14 @@ public class Slip {
         this.advice = advice;
     }
 
+    public long getSlipId() {
+        return slipId;
+    }
+
+    public void setSlipId(long slipId) {
+        this.slipId = slipId;
+    }
+
     @Override
     public String toString() {
         return "slipId=" + slipId +
