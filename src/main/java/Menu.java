@@ -130,11 +130,11 @@ public class Menu {
 
         while (continuing) {
             System.out.println();
-            System.out.println("Podmenu wyszukiwania");
-            System.out.println("Wybierz opcję:");
-            System.out.println("1 - wyszukaj cytat po słowie kluczowym");
-            System.out.println("2 - wyszukaj po Id");
-            System.out.println("0 - wyjście do głównego Menu");
+            System.out.println("Search submenu");
+            System.out.println("Choose:");
+            System.out.println("1 - Search by keyword");
+            System.out.println("2 - Search by Id");
+            System.out.println("0 - Exit");
 
             int option = -1;
             Scanner scanner = new Scanner(System.in);
@@ -148,7 +148,7 @@ public class Menu {
                     break;
                 }
                 case 1: {
-                    System.out.println("Podaj szukane słowo kluczowe:");
+                    System.out.println("Insert keyword:");
                     String keyword = scanner.nextLine();
                     try {
                         SearchResponse sr = adviceClient.searchByString(keyword);
@@ -159,18 +159,18 @@ public class Menu {
                     break;
                 }
                 case 2: {
-                    System.out.println("Podaj szukane Id:");
+                    System.out.println("Insert ID:");
                     int id = scanner.nextInt();
                     SlipDto slipDto = adviceClient.searchById(id);
                     System.out.println(slipDto);
                     break;
                 }
                 case -1: {
-                    System.out.println("Wpisz liczbę!");
+                    System.out.println("Pass a number!");
                     break;
                 }
                 default: {
-                    System.out.println("Funkcja nieobsługiwana.");
+                    System.out.println("Unknown function");
                     break;
                 }
             }
