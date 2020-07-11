@@ -9,9 +9,12 @@ import java.util.Scanner;
 public class Menu {
 
     public final AdviceService adviceService;
+    public final AdviceClient adviceClient;
 
-    public Menu(AdviceService adviceService) {
+
+    public Menu(AdviceService adviceService, AdviceClient adviceClient) {
         this.adviceService = adviceService;
+        this.adviceClient = adviceClient;
     }
 
     //user menu
@@ -36,7 +39,7 @@ public class Menu {
             //what to do after user choice
             switch (nextInt) {
                 case 1: {
-                    SlipDto randomAdvice = adviceService.getRandomAdvice();
+                    SlipDto randomAdvice = adviceClient.getRandomAdvice();
                     String advice = randomAdvice.getAdvice();
 //                    adviceService.saveAdvice(randomAdvice);
 
@@ -50,7 +53,17 @@ public class Menu {
                     //dodajemy zapisz albo powrót
                 }
                 case 2: {
-                    System.out.println("Not implemented yet, ssorry :( ");
+                    System.out.println("What are you looking for?");
+                    String search = scanner.next();
+
+                    try {
+                        int searchInt = Integer.parseInt(search);
+                        //System.out.println(adviceClient.searchById(nextInt));
+                    } catch (NumberFormatException e) {
+                        System.out.println(adviceClient.searchByString(search));
+                    }
+
+
                     break;
                 }
                 case 3: {
@@ -76,7 +89,7 @@ public class Menu {
 
     public void menuCase1() {
         boolean doContinue = true;
-        SlipDto randomAdvice = adviceService.getRandomAdvice();
+        SlipDto randomAdvice = adviceClient.getRandomAdvice();
         while (doContinue) {
 
             System.out.println("");
@@ -93,7 +106,7 @@ public class Menu {
 
             switch (nextInt) {
                 case 1: {
-                    randomAdvice = adviceService.getRandomAdvice();
+                    randomAdvice = adviceClient.getRandomAdvice();
                     String advice = randomAdvice.getAdvice();
 
                     System.out.println("");
@@ -119,6 +132,7 @@ public class Menu {
         }
     }
 
+
     public void menuCase3() {
         boolean doContinue = true;
 
@@ -126,7 +140,7 @@ public class Menu {
             System.out.println("");
             System.out.println("Choose option");
             System.out.println("1. Show my favourites");
-            System.out.println("2. Delete quote (ID)");
+            System.out.println("2. Delete quote (slipID)");
             System.out.println("0. Exit");
             int nextInt = -1;
             Scanner scanner = new Scanner(System.in);
@@ -142,7 +156,7 @@ public class Menu {
                 }
 
                 case 2: {
-                    System.out.println("Write ID to delete");
+                    System.out.println("Write slipID to delete");
 
                     int deleteID = scanner.nextInt();
                     SlipDao slipdao = new SlipDao();
